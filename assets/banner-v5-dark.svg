@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 320" width="1280" height="320" role="img" aria-labelledby="t d">
   <title id="t">Isaiah Anson</title>
-  <desc id="d">Endpoint, Mac and MDM support. Tier 2/3. Washington, D.C. metro. A branch graph that starts at one management point. The main line, labelled Work, runs through a laptop, a desktop and a phone, each with a check mark: Windows, Mac, Mobile. A side branch, labelled Side, runs through three project tiles: IT tools, AI agents, Game mods.</desc>
+  <desc id="d">Endpoint, Mac and MDM support. Tier 2/3. Washington, D.C.. A branch graph that starts at one management point. The main line, labelled Work, runs through a laptop, a desktop and a phone, each with a check mark: Windows, Mac, Mobile. A side branch, labelled Side, runs through three project tiles: IT tools, AI agents, Game mods.</desc>
   <style>
     .bg { fill: #0d1117; }
     .edge { fill: none; stroke: #30363d; }
@@ -37,7 +37,7 @@
   <rect class="accfill" x="64" y="84" width="44" height="4" rx="2"/>
   <text class="name" x="62" y="158" font-size="60" font-weight="600" letter-spacing="-0.5">Isaiah Anson</text>
   <text class="role" x="64" y="204" font-size="26" font-weight="400">Endpoint, Mac and MDM support</text>
-  <text class="meta" x="64" y="242" font-size="20" font-weight="400">Tier 2/3  ·  Washington, D.C. metro</text>
+  <text class="meta" x="64" y="242" font-size="20" font-weight="400">Tier 2/3  ·  Washington, D.C.</text>
 
   <path class="line" d="M711 94 H1150"/>
   <path class="acc" d="M730 94 C768 94 762 206 800 206 H1150"/>
