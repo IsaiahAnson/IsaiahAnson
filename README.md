@@ -1,7 +1,7 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.svg">
-  <img alt="Isaiah Anson. Endpoint, Mac and MDM support, Tier 2/3, Washington, D.C. metro." src="assets/banner-light.svg" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-v5-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/banner-v5-light.svg">
+  <img alt="Isaiah Anson. Endpoint, Mac and MDM support, Tier 2/3, Washington, D.C. metro. At work: Windows, Mac and mobile devices. On the side: IT tools, AI agents and game mods." src="assets/banner-v5-light.svg" width="100%">
 </picture>
 
 I'm an IT support specialist. Since 2022 I've supported federal users: first on the Department of Energy service desk, then on Treasury contracts doing deskside, Mac and mobile device support. Day to day that means Intune, Entra ID and Active Directory, Microsoft 365, SCCM, smart-card sign-in and VDI, plus writing the SOPs that let the next tech close the same ticket.
