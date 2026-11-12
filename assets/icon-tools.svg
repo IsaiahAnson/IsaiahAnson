@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" aria-hidden="true">
-  <style>.ink, .sW { fill: none; stroke: #fff; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; } .fW { fill: #fff; }</style>
-  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#12958a"/><stop offset="1" stop-color="#0a5f58"/></linearGradient></defs>
-  <rect width="64" height="64" rx="16" fill="url(#g)"/>
-  <path class="ink" d="M32 13 L48.5 22.5 V41.5 L32 51 L15.5 41.5 V22.5 Z"/><path class="sW" d="M15.5 22.5 L32 32 L48.5 22.5 M32 32 V51"/>
-</svg>
