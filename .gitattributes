@@ -1,0 +1,2 @@
+# Keep the README card script out of the language bar.
+tools/make_mods_downloads_card.py -linguist-detectable

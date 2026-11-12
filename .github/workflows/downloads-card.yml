@@ -1,0 +1,40 @@
+# Redraws the README's mod downloads card from the live Thunderstore counts once a day.
+# The two images (dark and light) live on their own branch ("stats") as a single commit that is
+# replaced on each run, so main gets no daily commits. The README loads the images from that branch.
+# If Thunderstore cannot be reached the drawing step fails and nothing is pushed,
+# so the last good cards stay in place.
+name: Downloads card
+
+on:
+  schedule:
+    - cron: "37 7 * * *" # every day at 07:37 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: downloads-card
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Draw the cards from the live counts
+        run: python3 tools/make_mods_downloads_card.py --out-dir out
+
+      - name: Replace the cards on the stats branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd out
+          git init -q -b stats
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add downloads-dark.svg downloads-light.svg
+          git commit -q -m "Mod downloads cards for $(date -u +%F)"
+          git push -q -f "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" stats
