@@ -52,6 +52,8 @@ I also write the SOPs that let the next tech close the same ticket. Two field gu
 
 I make game mods as **Mentalize**. Releases are on Thunderstore: [Grain Rot](https://thunderstore.io/c/grain-rot/p/Mentalize/) and [R.E.P.O.](https://thunderstore.io/c/repo/p/Mentalize/) CompatShield, for Risk of Rain 2, is on [GitHub releases](https://github.com/IsaiahAnson/compatshield/releases).
 
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/IsaiahAnson/IsaiahAnson/stats/downloads-dark.svg"><img src="https://raw.githubusercontent.com/IsaiahAnson/IsaiahAnson/stats/downloads-light.svg" width="100%" alt="Thunderstore download counts for my mods: the total, the split by game and a bar for each mod. Refreshed daily."></picture>
+
 | Mod | What it does | &nbsp;&nbsp;Built&nbsp;with&nbsp;&nbsp; |
 |---|---|---|
 | **[rot‑vitals](https://github.com/IsaiahAnson/rot-vitals)**<br><sub>Grain Rot</sub> | Floating health bars above enemies. | <picture><source media="(prefers-color-scheme: dark)" srcset="assets/chip-ue4ss-dark.svg"><img src="assets/chip-ue4ss-light.svg" width="86" height="22" alt="UE4SS"></picture><br><picture><source media="(prefers-color-scheme: dark)" srcset="assets/chip-lua-dark.svg"><img src="assets/chip-lua-light.svg" width="86" height="22" alt="Lua"></picture> |
