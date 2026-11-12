@@ -20,12 +20,12 @@ MODS = [
     ("REPOPerformanceKit", "Mentalize", "REPOPerformanceKit", "R.E.P.O."),
     ("REPOPathfinder", "MentalizePez", "REPOPathfinder", "R.E.P.O."),
     ("REPOBlacklist", "Mentalize", "REPOBlacklist", "R.E.P.O."),
-    ("rot-radar-minimap", "Mentalize", "RotRadarMinimap", "Grain Rot"),
-    ("coin-beams", "Mentalize", "CoinBeams", "Grain Rot"),
-    ("rot-vitals", "Mentalize", "RotVitals", "Grain Rot"),
-    ("rot-durability", "Mentalize", "RotDurability", "Grain Rot"),
-    ("grip-and-flip", "Mentalize", "GripAndFlip", "Grain Rot"),
-    ("rot-scaling", "Mentalize", "RotScaling", "Grain Rot"),
+    ("RotRadarMinimap", "Mentalize", "RotRadarMinimap", "Grain Rot"),
+    ("CoinBeams", "Mentalize", "CoinBeams", "Grain Rot"),
+    ("RotVitals", "Mentalize", "RotVitals", "Grain Rot"),
+    ("RotDurability", "Mentalize", "RotDurability", "Grain Rot"),
+    ("GripandFlip", "Mentalize", "GripAndFlip", "Grain Rot"),
+    ("RotScaling", "Mentalize", "RotScaling", "Grain Rot"),
 ]
 METRICS_URL = "https://thunderstore.io/api/v1/package-metrics/{ns}/{pkg}/"
 
