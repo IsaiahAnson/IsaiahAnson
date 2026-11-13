@@ -1,16 +1,19 @@
-"""Draws the "mod downloads" card for the profile README from the live Thunderstore counts.
+"""Draws the "mod downloads" card and the stat strip for the profile README from the live Thunderstore counts.
 
 Usage:
-    python tools/make_mods_downloads_card.py --out-dir out
-    python tools/make_mods_downloads_card.py --out-dir out --counts counts.json --date 2026-11-12   (no network)
+    python tools/make_mods_downloads_card.py --out-dir out --readme README.md
+    python tools/make_mods_downloads_card.py --out-dir out --readme README.md --counts counts.json --date 2026-11-12   (no network)
 
-Writes downloads-dark.svg and downloads-light.svg. Standard library only, so a scheduled job can
-run it with no install step. If any count cannot be read the script exits with an error and
-writes nothing, so the last good cards stay in place.
+Writes downloads-dark.svg and downloads-light.svg, and with --readme also strip-dark.svg and
+strip-light.svg (the four numbers under the banner; projects and field guides are counted from the
+README, so they stay right as rows are added). Standard library only, so a scheduled job can run it
+with no install step. If anything cannot be read the script exits with an error and writes
+nothing, so the last good images stay in place.
 """
 import argparse
 import json
 import os
+import re
 import sys
 import urllib.request
 from datetime import datetime, timezone
@@ -106,11 +109,67 @@ def card(counts, as_of, theme):
     return "\n".join(out)
 
 
+# --- stat strip: four numbers under the banner, in the README's section colours (blue, teal, violet, orange) ---
+FEDERAL_SINCE = 2022  # first federal service desk job
+SW, SH = 960, 124
+STRIP_TONES = {"dark": ("#58a6ff", "#3fb8af", "#a78bfa", "#f0883e"), "light": ("#0969da", "#0f766e", "#8250df", "#bc4c00")}
+# 24 px line icons: a columned building, an open book, a 2x2 grid of projects, a download arrow
+STRIP_ICONS = [
+    '<path d="M3 9 L12 4 L21 9 Z M5.5 12 V18 M10 12 V18 M14 12 V18 M18.5 12 V18 M3 21 H21"/>',
+    '<path d="M12 7 C9.5 5.2 6.5 4.8 3.5 5.3 V18.6 C6.5 18.1 9.5 18.5 12 20.2 C14.5 18.5 17.5 18.1 20.5 18.6 V5.3 C17.5 4.8 14.5 5.2 12 7 Z M12 7 V20.2"/>',
+    '<rect x="4" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.6"/>'
+    '<rect x="4" y="13.5" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.6"/>',
+    '<path d="M12 4 V15 M7 10.5 L12 15 L17 10.5 M5 20 H19"/>',
+]
+STRIP_STYLE = ("<style>@keyframes rise{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}"
+               ".c{animation:rise .7s cubic-bezier(.3,.7,.2,1) both}"
+               "@media (prefers-reduced-motion:reduce){.c{animation:none}}</style>")
+
+
+def readme_counts(path):
+    """Project rows (one icon each) and distinct field-guide links in the README."""
+    with open(path, encoding="utf-8") as f:
+        text = f.read()
+    projects = sum(1 for ln in text.splitlines() if ln.startswith('| <img src="assets/proj-'))
+    guides = len(set(re.findall(r"https://isaiahanson\.pages\.dev/guides/[a-z0-9-]+", text)))
+    if not projects or not guides:
+        raise ValueError(f"README counts look wrong: {projects} projects, {guides} guides")
+    return projects, guides
+
+
+def strip(total, n_mods, projects, guides, theme):
+    t = THEMES[theme]
+    cells = [("FEDERAL IT SINCE", str(FEDERAL_SINCE), "Energy, then Treasury"),
+             ("FIELD GUIDES", str(guides), "iPhone and Mac setup"),
+             ("PROJECTS", str(projects), "IT tools, AI tools, mods"),
+             ("MOD DOWNLOADS", f"{total:,}", f"{n_mods} mods · updated daily")]
+    summary = (f"In federal IT since {FEDERAL_SINCE}. {guides} field guides. {projects} projects. "
+               f"{total:,} mod downloads on Thunderstore.")
+    cw = SW / len(cells)
+    out = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {SW} {SH}" width="{SW}" height="{SH}" role="img" aria-label="{esc(summary)}">',
+           f"<title>{esc(summary)}</title>", STRIP_STYLE,
+           f'<rect x="0.75" y="0.75" width="{SW - 1.5}" height="{SH - 1.5}" rx="14" fill="{t["line"]}" fill-opacity="0.025" stroke="{t["line"]}" stroke-opacity="0.13" stroke-width="1.5"/>',
+           f'<g font-family="{FONT}">']
+    for i, (eyebrow, value, note) in enumerate(cells):
+        x, tone = cw * i, STRIP_TONES[theme][i]
+        if i:
+            out.append(f'<path d="M{x:.1f} 28 V{SH - 28}" stroke="{t["line"]}" stroke-opacity="0.12"/>')
+        out.append(f'<g class="c" style="animation-delay:{0.1 + 0.09 * i:.2f}s">'
+                   f'<rect x="{x + 24:.1f}" y="38" width="46" height="46" rx="12" fill="{tone}" fill-opacity="0.13" stroke="{tone}" stroke-opacity="0.42"/>'
+                   f'<g transform="translate({x + 35:.1f} 49)" fill="none" stroke="{tone}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">{STRIP_ICONS[i]}</g>'
+                   f'<text x="{x + 84:.1f}" y="42" font-size="11" font-weight="700" letter-spacing="1.3" fill="{tone}">{eyebrow}</text>'
+                   f'<text x="{x + 83:.1f}" y="76" font-size="31" font-weight="700" letter-spacing="-0.6" fill="{t["ink"]}">{esc(value)}</text>'
+                   f'<text x="{x + 84:.1f}" y="97" font-size="12.5" fill="{t["muted"]}">{esc(note)}</text></g>')
+    out.append("</g>\n</svg>\n")
+    return "\n".join(out)
+
+
 def main():
     ap = argparse.ArgumentParser(description="Draws the mod downloads card for the profile README.")
     ap.add_argument("--out-dir", required=True, help="folder to write downloads-dark.svg and downloads-light.svg into")
     ap.add_argument("--counts", help='JSON file of {"<package>": downloads} to use instead of asking Thunderstore')
     ap.add_argument("--date", help="date to print on the card, as YYYY-MM-DD (default: today, UTC)")
+    ap.add_argument("--readme", help="the profile README; when given, also draws strip-dark.svg and strip-light.svg")
     args = ap.parse_args()
 
     try:
@@ -122,18 +181,23 @@ def main():
         missing = [pkg for _, _, pkg, _ in MODS if pkg not in counts]
         if missing:
             raise KeyError("no count for " + ", ".join(missing))
-    except Exception as err:  # network error, bad JSON, missing key: keep the old cards
+        projects, guides = readme_counts(args.readme) if args.readme else (0, 0)
+    except Exception as err:  # network error, bad JSON, missing key, odd README: keep the old images
         print(f"Could not read the counts: {err}", file=sys.stderr)
         return 1
 
     day = datetime.strptime(args.date, "%Y-%m-%d") if args.date else datetime.now(timezone.utc)
     as_of = f"{MONTHS[day.month - 1]} {day.day}, {day.year}"
-    cards = {theme: card(counts, as_of, theme) for theme in THEMES}  # draw both before writing either
+    total = sum(counts[pkg] for _, _, pkg, _ in MODS)
+    files = {f"downloads-{theme}.svg": card(counts, as_of, theme) for theme in THEMES}  # draw all before writing any
+    if args.readme:
+        files.update({f"strip-{theme}.svg": strip(total, len(MODS), projects, guides, theme) for theme in THEMES})
     os.makedirs(args.out_dir, exist_ok=True)
-    for theme, svg in cards.items():
-        with open(os.path.join(args.out_dir, f"downloads-{theme}.svg"), "w", encoding="utf-8", newline="\n") as f:
+    for name, svg in files.items():
+        with open(os.path.join(args.out_dir, name), "w", encoding="utf-8", newline="\n") as f:
             f.write(svg)
-    print(f"wrote 2 cards to {args.out_dir}: {sum(counts[pkg] for _, _, pkg, _ in MODS):,} downloads, as of {as_of}")
+    extra = f", {projects} projects, {guides} guides" if args.readme else ""
+    print(f"wrote {len(files)} images to {args.out_dir}: {total:,} downloads{extra}, as of {as_of}")
     return 0
 
 
