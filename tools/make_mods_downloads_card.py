@@ -26,6 +26,7 @@ MODS = [
     ("RotDurability", "Mentalize", "RotDurability", "Grain Rot"),
     ("GripandFlip", "Mentalize", "GripAndFlip", "Grain Rot"),
     ("RotScaling", "Mentalize", "RotScaling", "Grain Rot"),
+    ("CompatShield", "Mentalize", "CompatShield", "Risk of Rain 2"),
 ]
 METRICS_URL = "https://thunderstore.io/api/v1/package-metrics/{ns}/{pkg}/"
 
@@ -33,10 +34,10 @@ FONT = "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, A
 MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 # Colours follow the README's other artwork: GitHub's own greys, and the orange of the Game mods section.
 THEMES = {
-    "dark": dict(ink="#e6edf3", muted="#8b949e", dim="#6e7681", line="#ffffff", tones=("#f0883e", "#e3b341"), wash=0.07),
-    "light": dict(ink="#1f2328", muted="#59636e", dim="#818b98", line="#1f2328", tones=("#bc4c00", "#9a6700"), wash=0.05),
+    "dark": dict(ink="#e6edf3", muted="#8b949e", dim="#6e7681", line="#ffffff", tones=("#f0883e", "#e3b341", "#ff7b72"), wash=0.07),
+    "light": dict(ink="#1f2328", muted="#59636e", dim="#818b98", line="#1f2328", tones=("#bc4c00", "#9a6700", "#cf222e"), wash=0.05),
 }
-W, H = 960, 252
+W, H = 960, 282
 BAR_X, BAR_W = 512, 340
 STYLE = ("<style>@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}"
          ".bar{transform-box:fill-box;transform-origin:0 50%;animation:grow .8s cubic-bezier(.3,.7,.2,1) both}"
@@ -67,7 +68,7 @@ def card(counts, as_of, theme):
         n, s = games.get(game, (0, 0))
         games[game] = (n + 1, s + count)
     order = sorted(games, key=lambda g: -games[g][1])
-    tone = {game: t["tones"][i % 2] for i, game in enumerate(order)}
+    tone = {game: t["tones"][i % len(t["tones"])] for i, game in enumerate(order)}
     a = t["tones"][0]
 
     split = ", ".join(f"{g} {games[g][1]:,}" for g in order)
@@ -87,7 +88,7 @@ def card(counts, as_of, theme):
         n, s = games[game]
         out.append(f'<circle cx="37" cy="{y - 5}" r="5" fill="{tone[game]}"/>'
                    f'<text x="50" y="{y}" font-size="14" font-weight="600" fill="{ink}">{esc(game)}</text>'
-                   f'<text x="124" y="{y}" font-size="12.5" fill="{muted}">{n} mods</text>'
+                   f'<text x="158" y="{y}" font-size="12.5" fill="{muted}">{n} mod{"" if n == 1 else "s"}</text>'
                    f'<text x="308" y="{y}" font-size="14" font-weight="700" fill="{ink}" text-anchor="end">{s:,}</text>')
     out.append(f'<text x="32" y="{170 + 26 * len(order) + 6}" font-size="12" fill="{dim}">As of {as_of} · refreshed daily</text>')
     out.append(f'<path d="M340.5 30 V{H - 30}" stroke="{line}" stroke-opacity="0.12"/>')

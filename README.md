@@ -50,7 +50,7 @@ I also write the SOPs that let the next tech close the same ticket. Two field gu
 
 ## <picture><source media="(prefers-color-scheme: dark)" srcset="assets/icon-mods-dark.svg"><img src="assets/icon-mods-light.svg" width="30" height="30" align="absmiddle" alt=""></picture> Game mods
 
-I make game mods as **Mentalize**. Releases are on Thunderstore: [Grain Rot](https://thunderstore.io/c/grain-rot/p/Mentalize/) and [R.E.P.O.](https://thunderstore.io/c/repo/p/Mentalize/) CompatShield, for Risk of Rain 2, is on [GitHub releases](https://github.com/IsaiahAnson/CompatShield/releases).
+I make game mods as **Mentalize**. Releases are on Thunderstore: [Grain Rot](https://thunderstore.io/c/grain-rot/p/Mentalize/), [R.E.P.O.](https://thunderstore.io/c/repo/p/Mentalize/) and [Risk of Rain 2](https://thunderstore.io/c/riskofrain2/p/Mentalize/).
 
 <picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/IsaiahAnson/IsaiahAnson/stats/downloads-dark.svg"><img src="https://raw.githubusercontent.com/IsaiahAnson/IsaiahAnson/stats/downloads-light.svg" width="100%" alt="Thunderstore download counts for my mods: the total, the split by game and a bar for each mod. Refreshed daily."></picture>
 
