@@ -1,5 +1,5 @@
 # Redraws the README's mod downloads card and the stat strip under the banner from the live
-# Thunderstore counts once a day (the strip's project and field-guide counts come from README.md).
+# Thunderstore counts once a day (the strip's project count comes from README.md).
 # The images (dark and light of each) live on their own branch ("stats") as a single commit that is
 # replaced on each run, so main gets no daily commits. The README loads the images from that branch.
 # If Thunderstore cannot be reached the drawing step fails and nothing is pushed,

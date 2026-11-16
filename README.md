@@ -5,14 +5,10 @@
 </picture>
 
 <p align="center">
-  <a href="https://isaiahanson.pages.dev/resume"><img src="assets/btn-resume.svg" height="32" alt="Resume"></a>
-  <a href="https://isaiahanson.pages.dev"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-website-dark.svg"><img src="assets/btn-website-light.svg" height="32" alt="Website"></picture></a>
-  <a href="https://isaiahanson.pages.dev/experience"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-experience-dark.svg"><img src="assets/btn-experience-light.svg" height="32" alt="Experience"></picture></a>
   <a href="https://www.linkedin.com/in/isaiah-anson-b6544514b/"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-linkedin-dark.svg"><img src="assets/btn-linkedin-light.svg" height="32" alt="LinkedIn"></picture></a>
-  <a href="https://isaiahanson.pages.dev/contact"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-contact-dark.svg"><img src="assets/btn-contact-light.svg" height="32" alt="Contact"></picture></a>
 </p>
 
-<picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/IsaiahAnson/IsaiahAnson/stats/strip-dark.svg"><img src="https://raw.githubusercontent.com/IsaiahAnson/IsaiahAnson/stats/strip-light.svg" width="100%" alt="At a glance: in federal IT since 2022, my field guides and projects, and my mod downloads on Thunderstore, refreshed daily."></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/IsaiahAnson/IsaiahAnson/stats/strip-dark.svg"><img src="https://raw.githubusercontent.com/IsaiahAnson/IsaiahAnson/stats/strip-light.svg" width="100%" alt="At a glance: in federal IT since 2022, my projects, and my mod downloads on Thunderstore, refreshed daily."></picture>
 
 I'm an IT support specialist in the Washington, D.C. area. Since 2022 I've supported federal users: first on the Department of Energy service desk, then on Treasury contracts doing deskside, Mac and mobile device support.
 
@@ -30,12 +26,7 @@ What I work with day to day:
 | <picture><source media="(prefers-color-scheme: dark)" srcset="assets/mini-windows-dark.svg"><img src="assets/mini-windows-light.svg" width="20" height="20" align="absmiddle" alt=""></picture>&nbsp; **Windows** | Windows 10/11, SCCM, Group Policy, BitLocker, VDI and thin clients |
 | <picture><source media="(prefers-color-scheme: dark)" srcset="assets/mini-identity-dark.svg"><img src="assets/mini-identity-light.svg" width="20" height="20" align="absmiddle" alt=""></picture>&nbsp; **Identity&nbsp;and Microsoft&nbsp;365** | Entra ID, Active Directory, MFA, Conditional Access, smart-card sign-in, Microsoft 365 accounts and licenses |
 
-I also write the SOPs that let the next tech close the same ticket. Two field guides from the work:
-
-<p align="center">
-  <a href="https://isaiahanson.pages.dev/guides/iphone-zero-touch-enrollment"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/guide-iphone-dark.svg"><img src="assets/guide-iphone-light.svg" width="49%" alt="Field guide: iPhone zero-touch enrollment with Apple Business Manager and Intune"></picture></a>
-  <a href="https://isaiahanson.pages.dev/guides/mac-setup-before-the-user-arrives"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/guide-mac-dark.svg"><img src="assets/guide-mac-light.svg" width="49%" alt="Field guide: Mac setup before the user arrives. Enrollment, FileVault and a handoff checklist"></picture></a>
-</p>
+I also write the SOPs that let the next tech close the same ticket.
 
 ## <picture><source media="(prefers-color-scheme: dark)" srcset="assets/icon-tools-dark.svg"><img src="assets/icon-tools-light.svg" width="30" height="30" align="absmiddle" alt=""></picture> IT tools
 
@@ -84,6 +75,5 @@ I make game mods as **Mentalize**. Releases are on Thunderstore: [Grain Rot](htt
 </p>
 
 <p align="center">
-  <a href="https://isaiahanson.pages.dev/contact"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-contact-dark.svg"><img src="assets/btn-contact-light.svg" height="32" alt="Contact"></picture></a>
   <a href="https://www.linkedin.com/in/isaiah-anson-b6544514b/"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-linkedin-dark.svg"><img src="assets/btn-linkedin-light.svg" height="32" alt="LinkedIn"></picture></a>
 </p>
